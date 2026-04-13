@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro de Prospect | Acalantis</title>
+    <link rel="stylesheet" href="/src/style.css">
+    <link rel="icon" href="/images/logo_icon_light.png">
+    <style>
+        .form-container {
+            max-width: 800px;
+            margin: 50px auto;
+            background: var(--glass);
+            padding: 40px;
+            border: 1px solid var(--glass-border);
+            border-radius: 8px;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: 600;
+            color: var(--accent-silver);
+            font-size: 0.95rem;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 15px;
+            background: rgba(0, 0, 0, 0.2);
+            border: 1px solid var(--glass-border);
+            color: #fff;
+            border-radius: 4px;
+            font-family: inherit;
+            font-size: 1rem;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--accent-silver);
+            background: rgba(0, 0, 0, 0.4);
+        }
+
+        .section-title {
+            margin: 40px 0 20px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid var(--glass-border);
+            color: var(--off-white);
+            font-size: 1.5rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        button[type="submit"] {
+            width: 100%;
+            margin-top: 20px;
+            font-size: 1.1rem;
+            padding: 18px;
+            border-radius: 50px;
+        }
+
+        .feedback-msg {
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 4px;
+            text-align: center;
+            display: none;
+        }
+
+        .feedback-msg.success {
+            display: block;
+            background: rgba(37, 211, 102, 0.1);
+            border: 1px solid #25D366;
+            color: #25D366;
+        }
+
+        .feedback-msg.error {
+            display: block;
+            background: rgba(255, 60, 60, 0.1);
+            border: 1px solid #ff3c3c;
+            color: #ff3c3c;
+        }
+    </style>
+</head>
+
+<body>
+    <header class="hero" style="height: auto; padding-bottom: 20px;">
+        <nav class="container">
+            <a href="index.html">
+                <img src="/images/logo_wordmark_light.png" alt="Acalantis Logo" class="logo">
+            </a>
+            <div style="display: flex; gap: 15px;">
+                <a href="index.html" class="btn-outline" style="border-radius: 50px; font-size: 0.75rem; padding: 10px 20px;">Voltar ao Manual</a>
+            </div>
+        </nav>
+        <div class="container text-center" style="margin-top: 50px;">
+            <h1 style="font-family: 'Poiret One', cursive; text-transform: uppercase; letter-spacing: 2px; font-size: 2.5rem; text-align: center;">Cadastro de Prospect</h1>
+            <p style="text-align: center; color: var(--accent-silver); margin-top: 10px;">Preencha os dados do lead para integração com o CRM e Google Sheets.</p>
+        </div>
+    </header>
+
+    <main class="container">
+        <div class="form-container">
+            <form id="prospect-form">
+                
+                <h3 class="section-title">Dados da Empresa</h3>
+                
+                <div class="form-group">
+                    <label>Nome da Empresa *</label>
+                    <input type="text" name="empresa" required placeholder="Ex: Clínica Odonto Prime">
+                </div>
+                <div class="form-group">
+                    <label>Responsável (Decisor) *</label>
+                    <input type="text" name="responsavel" required placeholder="Ex: Dr. João Silva">
+                </div>
+                <div class="form-group">
+                    <label>Segmento/Nicho de Atuação Exato *</label>
+                    <input type="text" name="segmento" required placeholder="Ex: Implantes Dentários">
+                </div>
+                <div class="form-group">
+                    <label>Cidade/Região Alvo *</label>
+                    <input type="text" name="cidade" required placeholder="Ex: São Paulo - SP (Zona Sul)">
+                </div>
+                <div class="form-group">
+                    <label>WhatsApp do Decisor *</label>
+                    <input type="tel" name="whatsapp" required placeholder="(11) 99999-9999">
+                </div>
+                
+                <h3 class="section-title">Cenário e Qualificação</h3>
+
+                <div class="form-group">
+                    <label>Já investe ou investiu em Tráfego Pago? *</label>
+                    <select name="investe_trafego" required>
+                        <option value="">Selecione...</option>
+                        <option value="Sim, atualmente">Sim, atualmente</option>
+                        <option value="Já investiu e parou">Já investiu e parou</option>
+                        <option value="Nunca investiu">Nunca investiu</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Faturamento Médio Mensal (Opcional)</label>
+                    <select name="faturamento">
+                        <option value="">Prefere não informar / Não abordado</option>
+                        <option value="Abaixo de 50k">Abaixo de R$ 50.000</option>
+                        <option value="50k a 100k">R$ 50.000 a R$ 100.000</option>
+                        <option value="Acima de 100k">Acima de R$ 100.000</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Possui equipe comercial ou dedicado para leads? *</label>
+                    <select name="equipe_vendas" required>
+                        <option value="">Selecione...</option>
+                        <option value="Sim, equipe dedicada">Sim, equipe dedicada (SDR/Closer)</option>
+                        <option value="Sim, a recepcionista/secretária atende">Sim, a recepcionista/secretária atende</option>
+                        <option value="Não, o próprio dono atende">Não, o próprio dono atende</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Objetivo principal nos próximos 6 meses *</label>
+                    <textarea name="objetivo" required rows="3" placeholder="Ex: Dobrar o número de avaliações mensais de implante."></textarea>
+                </div>
+
+                <h3 class="section-title">Análise do SDR</h3>
+                
+                <div class="form-group">
+                    <label>O cliente demonstrou perfil decidido e estratégico? *</label>
+                    <select name="perfil_decidido" required>
+                        <option value="">Selecione...</option>
+                        <option value="Sim">Sim (Perfil Ideal)</option>
+                        <option value="Não">Não (inseguro ou não focado em longo prazo)</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Observações do SDR</label>
+                    <textarea name="observacoes" rows="4" placeholder="Adicione notas sobre objeções sentidas, tom da conversa e detalhes extras."></textarea>
+                </div>
+
+                <button type="submit" class="btn-primary" id="submit-btn">Enviar Cadastro para Planilha</button>
+                <div id="form-feedback" class="feedback-msg"></div>
+            </form>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container footer-content">
+            <img src="/images/logo_wordmark_light.png" alt="Acalantis Logo" class="footer-logo">
+            <p>&copy; 2026 Acalantis Agency. @acalantisagencia</p>
+        </div>
+    </footer>
+
+    <script src="/src/cadastro.js"></script>
+</body>
+
+</html>
